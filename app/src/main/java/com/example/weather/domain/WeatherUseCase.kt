@@ -13,8 +13,8 @@ import com.example.weather.result.Result
 class WeatherUseCase @Inject constructor(
     private val WeatherRepository: WeatherRepository,
     @IODispatcher ioDispatcher: CoroutineDispatcher
-): FlowUseCase<WeatherRequest, Any>(ioDispatcher) {
-    override fun execute(WeatherRequest: WeatherRequest): Flow<Result<Any>> = flow {
+): FlowUseCase<WeatherRequest, WeatherResponse>(ioDispatcher) {
+    override fun execute(WeatherRequest: WeatherRequest): Flow<Result<WeatherResponse>> = flow {
         emit(Result.Loading)
         emit(Result.Success(WeatherRepository.getWeatherInfo(
             serviceKey = WeatherRequest.serviceKey,
