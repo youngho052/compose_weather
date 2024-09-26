@@ -2,6 +2,7 @@ package com.example.weather.di
 
 import android.content.Context
 import com.example.weather.BuildConfig
+import com.example.weather.data.api.FoodMenuItemsService
 import com.example.weather.data.api.WeatherService
 import com.google.gson.GsonBuilder
 import com.squareup.moshi.Moshi
@@ -20,12 +21,20 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.converter.moshi.MoshiConverterFactory
 import retrofit2.converter.scalars.ScalarsConverterFactory
+import retrofit2.create
 import javax.inject.Singleton
 
 @InstallIn(SingletonComponent::class)
 @Module(includes = [ApiModule.Providers::class])
 object ApiModule {
 
+    @Provides
+    @Singleton
+    fun provideFoodMenuItemsService(
+        retrofit: Retrofit
+    ): FoodMenuItemsService {
+        return retrofit.create(FoodMenuItemsService::class.java)
+    }
     @Provides
     @Singleton
     fun provideWeatherService(

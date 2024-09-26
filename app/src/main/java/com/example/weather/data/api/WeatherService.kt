@@ -1,6 +1,7 @@
 package com.example.weather.data.api
 
 import com.example.weather.BuildConfig
+import com.example.weather.data.api.response.WeatherResponse
 import retrofit2.http.GET
 import retrofit2.http.Query
 
@@ -15,5 +16,5 @@ interface WeatherService {
         @Query("base_time") baseTime: String = "0500",
         @Query("nx") nx: String,
         @Query("ny") ny: String,
-    ): Any
+    ): WeatherResponse
 }

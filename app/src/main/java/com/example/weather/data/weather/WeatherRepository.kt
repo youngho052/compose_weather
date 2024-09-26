@@ -15,7 +15,7 @@ interface WeatherRepository {
         baseTime: String = "0500",
         nx: String,
         ny: String,
-    ): Any
+    ): WeatherResponse
 }
 
 class DefaultWeatherRepository(private val service: WeatherService): WeatherRepository {
@@ -28,7 +28,7 @@ class DefaultWeatherRepository(private val service: WeatherService): WeatherRepo
         baseTime: String,
         nx: String,
         ny: String
-    ): Any {
+    ): WeatherResponse {
         return kotlin.run {
             service.getWeatherInfo(
                 BuildConfig.SERVICE_KEY,
